@@ -1,8 +1,17 @@
-import { Schema } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
-const ProductScheman = new Schema({
+const ProductSchema = new Schema({
     name: {
         type: String,
+        required: true
+    },
+    stocks: {
+        type: String,
+        required: true
+    },
+    user:{
+        type: Schema.Types.ObjectId,
+        ref:"User",
         required: true
     },
     price: {
@@ -26,3 +35,5 @@ const ProductScheman = new Schema({
         required: true
     },
 },{timestamps:true})
+
+const Product = models.Product || model("Product", ProductSchema)
